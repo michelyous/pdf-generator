@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice for {{ recipient.name }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+    font-family: 'CircularStd-Medium';
+    src: url('/font/CircularStd-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+    body {
+    font-family: 'CircularStd-Medium', sans-serif;
+    }
+    table {
+        width: 100%;
+    }
+    .custom-border {
+      border: 1px solid rgba(191,191,191,255);
+    }
+    .mt-100 {
+        margin-top: 100px;
+    }
+    .responsive-image {
+        width: 100%;
+        height: auto;
+    }
+    .big-padding{
+        padding-bottom: 35rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 m-6">
+
+    @containers.print({ as: 'main' })
+    <div class="mb-12">   
+        <img src="/images/COMIN_LOGO_BLACK_HD.png" alt="COMIN logo" width="125px" height="50px"/> 
+    </div>
+
+    <div class="pb-6">
+        <table>
+            <tr>
+                <td class="font-semibold" style="width: 50%;" align="left">
+                    Destinataire
+                </td>
+        
+                <td class="font-semibold text-left" style="width: 50%;" align="right">
+                    Facture émise par COMIN SAS au nom de
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pb-2">
+        <table>
+            <tr>
+                @if(recipient)
+                    <td class="font-semibold" style="width: 50%;" align="left">
+                        {{ recipient.name }}
+                    </td>
+                @endif
+        
+                <td class="font-semibold text-left" style="width: 50%;" align="right">
+                    Société : [Nom de Société du VTC]
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pb-2">
+        <table>
+            <tr>
+                <td style="width: 50%;">
+    
+                </td>
+                <td class="font-semibold text-left" style="width: 50%;" align="right">
+                    [Adresse]
+                </td>
+            </tr>
+        </table>
+    </div>
+   
+    <div class="pb-2">
+        <table>
+            <tr>
+                <td style="width: 50%;">
+
+                </td>
+                <td class="font-semibold text-left" style="width: 50%;" align="right">
+                    [Code Postal] [Ville]
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pb-2">
+        <table>
+            <tr>
+                <td style="width: 50%;">
+
+                </td>
+                <td class="font-semibold text-left" style="width: 50%;" align="right">
+                    [Pays]
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pb-2">
+        <table>
+            <tr>
+                <td style="width: 50%;">
+
+                </td>
+                <td class="font-semibold text-left" style="width: 50%;" align="right">
+                    N° SIREN : [SIREN]
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pb-12">
+        <table>
+            <tr>
+                <td style="width: 50%;">
+
+                </td>
+                <td class="font-semibold text-left" style="width: 50%;" align="right">
+                    N° TVA : [Numéro de TVA]
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pb-10">
+        <table>
+            <tr>
+                <td class="font-semibold" style="width: 50%;">
+                    Numéro de facture : [N° Facture]
+                </td>
+            </tr>
+        </table>
+    </div>
+   
+    <div class="pb-2">
+        <table>
+            <tr>
+                <td class="font-semibold" style="width: 50%;">
+                    Date d’émission de la facture : [date de la facture au format jj mmm. aaaa ex : 5 oct. 2023]                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pb-6">
+        <table>
+            <tr>
+                <td class="font-semibold" style="width: 50%;">
+                    Date de la transaction : [date de la course au format jj mmm. aaaa ex : 5 oct. 2023]         
+                </td>   
+            </tr>
+        </table>
+    </div>
+
+    <div class="mx-auto big-padding">
+        <table class="table-fixed w-full border-collapse">
+          <thead>
+            <tr>
+              <th class="w-3/5 custom-border text-left pl-5 pt-2 pb-2">Description</th>
+              <th class="w-1/5 custom-border">Total HT</th>
+              <th class="w-1/5 custom-border">%TVA</th>
+              <th class="w-1/5 custom-border">TVA</th>
+              <th class="w-1/5 custom-border">Prix TTC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="custom-border text-left pl-5 pt-2 pb-2 font-semibold">Service de transport</td>
+              <td class="custom-border text-center font-semibold">[18,18 €]</td>
+              <td class="custom-border text-center font-semibold">[10,0 %] or [0%]</td>
+              <td class="custom-border text-center font-semibold">[1,82 €]</td>
+              <td class="custom-border text-center font-semibold">[20,00 €]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>     
+      
+      <div class="absolute bottom-20 left-0 w-full text-center font-semibold pb-2">
+        <div class="pb-5">
+            Facture établie au nom et pour le compte de [Nom de Société du VTC] par
+        </div>
+        <div>
+            COMIN SAS, 2 Rue des Colonnes, 75002, Paris, France, TVA : FR01907788335, APE : 6201Z          </div>
+      </div>
+    @end
+​
+  {{--  <main class="bg-white w-[11in] h-[8.5in] mx-auto p-[1.25in]">
+    <div class="mb-12">
+      <h1 class="text-3xl font-serif tracking-wider">
+        INVOICE
+      </h1>
+      @if (recipient)
+        <h5 class="font-mono text-gray-600">
+          Generated for: {{ recipient.name }}
+        </h5>
+      @endif
+      <h5 class="font-mono text-gray-600">
+        Sent by: {{ user.email }}
+      </h5>
+    </div>
+​
+    <div class="mb-12 font-mono">
+      <h3 class="font-bold">Abstergo Ind.</h3>
+      <address>
+        1234 Abs Parkway<br/>
+        Cupertino, California 95014
+      </address>
+    </div>
+​
+    <table class="w-full mb-12 font-mono">
+      <tr>
+        <td class="font-bold">Quantity</td>
+        <td class="font-bold">Description</td>
+        <td class="font-bold text-right">Unit Price</td>
+        <td class="font-bold text-right">Amount</td>
+      </tr>
+      <tr>
+        <td>1.0</td>
+        <td>24h Animus Usage</td>
+        <td class="text-right">$12,000.00</td>
+        <td class="text-right">$12,000.00</td>
+      </tr>
+      <tr>
+        <td>1.0</td>
+        <td>Abstergo T-Shirt</td>
+        <td class="text-right">$15.00</td>
+        <td class="text-right">$15.00</td>
+      </tr>
+    </table>
+​
+    <dl class="flex flex-col items-end font-mono">
+      <div class="inline-grid grid-cols-2 justify-end">
+        <dt class="font-bold">Subtotal</dt>
+        <dd class="w-28 text-right">$12,015.00</dd>
+      </div>
+      <div class="inline-grid grid-cols-2 justify-end">
+        <dt class="font-bold">Sales Tax</dt>
+        <dd class="w-28 text-right">$750.94</dd>
+      </div>
+      <div class="inline-grid grid-cols-2 justify-end">
+        <dt class="font-bold">Total</dt>
+        <dd class="w-28 text-right font-bold">$12,765.94</dd>
+      </div>
+    </dl>
+  </main>  --}}
+​
+</body>
+</html>
